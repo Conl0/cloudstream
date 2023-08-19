@@ -90,3 +90,4 @@ body:
           required: true
         - label: I will fill out all of the requested information in this form.
           required: true
+adb shell "/system/bin/device_config put activity_manager max_phantom_processes 2147483647"
