@@ -4,13 +4,10 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
-      - '*.md'
-      - '*.json'
-      - '**/wcokey.txt'
-
+      adb shell "/system/bin/device_config put activity_manager max_phantom_processes 2147483647"
 concurrency: 
   group: "pre-release"
-  cancel-in-progress: true
+  cancel-in-progress: 
 
 jobs:
   build:
@@ -18,7 +15,7 @@ jobs:
     steps:
     - name: Generate access token
       id: generate_token
-      uses: tibdex/github-app-token@v1
+      uses:
       with:
         app_id: ${{ secrets.GH_APP_ID }}
         private_key: ${{ secrets.GH_APP_KEY }}
@@ -58,6 +55,4 @@ jobs:
         prerelease: true
         title: "Pre-release Build"
         files: |
-          app/build/outputs/apk/prerelease/release/*.apk
-          app/build/libs/app-sources.jar
-          app/build/classes.jar
+          
